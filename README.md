@@ -209,12 +209,15 @@ For production, change the database URL and add a strong JWT secret.
 
 ## Tech Stack
 
-- **NestJS** - The backend framework (like Express but better structured)
-- **Prisma** - Database ORM (writes SQL for you, gives you types)
-- **PostgreSQL** - Database (reliable, well-supported)
-- **Redis** - Cache (makes things fast)
-- **TypeScript** - JavaScript with types (catches bugs early)
-- **Docker** - Runs PostgreSQL and Redis locally
+| Technology | Purpose | Why This One |
+|-----------|---------|--------------|
+| **NestJS** | Backend framework | Better structured than Express, built-in DI |
+| **Prisma** | Database ORM | Type-safe queries, easy migrations |
+| **PostgreSQL** | Database | Reliable, feature-rich, well-supported |
+| **Redis** | Caching | Fast, simple, perfect for sessions/cache |
+| **Angular** | Frontend | Powerful, complete framework |
+| **TypeScript** | Language | Catches bugs before runtime |
+| **Docker** | Development | Consistent local environment |
 
 ## What's Not Included
 
