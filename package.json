@@ -1,0 +1,31 @@
+{
+  "name": "fullstack-monorepo-starter",
+  "version": "1.0.0",
+  "description": "Full-Stack Monorepo Starter - Production-ready NestJS + Angular template with Prisma, Redis, and PostgreSQL",
+  "scripts": {
+    "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\"",
+    "start:backend": "cd backend && npm run start:dev",
+    "start:frontend": "cd frontend && npm start",
+    "build": "concurrently \"npm run build:backend\" \"npm run build:frontend\"",
+    "build:backend": "cd backend && npm run build",
+    "build:frontend": "cd frontend && npm run build",
+    "install:all": "npm install && cd backend && npm install && cd ../frontend && npm install"
+  },
+  "keywords": [
+    "nestjs",
+    "angular",
+    "fullstack",
+    "monorepo",
+    "starter-template",
+    "sample-project",
+    "prisma",
+    "redis",
+    "postgresql",
+    "typescript"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}

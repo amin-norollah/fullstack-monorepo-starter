@@ -1,0 +1,65 @@
+services:
+  ##########################
+  # Redis Cache Service
+  ##########################
+  redis:
+    image: redis:7.4-alpine
+    container_name: fullstack-monorepo-starter-redis
+    ports:
+      - "6379:6379"
+    environment:
+      - REDIS_PASSWORD=${REDIS_PASSWORD:-redis_password}
+    command: redis-server --save 20 1 --loglevel warning --requirepass ${REDIS_PASSWORD:-redis_password}
+    networks:
+      - fullstack-monorepo-starter-network
+    restart: unless-stopped
+    volumes:
+      - redis-data:/data
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+    healthcheck:
+      test: ["CMD", "redis-cli", "--raw", "incr", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  ##########################
+  # PostgreSQL Database Service
+  ##########################
+  postgresql:
+    image: postgres:17.0-alpine
+    container_name: fullstack-monorepo-starter-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=${DATABASE_USER:-postgres}
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD:-postgres}
+      - POSTGRES_DB=${DATABASE_NAME:-fullstack_monorepo_starter}
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - fullstack-monorepo-starter-network
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DATABASE_USER:-postgres}"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+networks:
+  fullstack-monorepo-starter-network:
+    driver: bridge
+    name: fullstack-monorepo-starter-network
+
+volumes:
+  postgres-data:
+    name: fullstack-monorepo-starter-postgres-data
+  redis-data:
+    name: fullstack-monorepo-starter-redis-data

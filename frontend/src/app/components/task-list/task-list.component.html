@@ -1,0 +1,87 @@
+<div class="container">
+  <h1>Task Manager</h1>
+
+  <div *ngIf="error" class="error-message">
+    {{ error }}
+    <button (click)="error = null">×</button>
+  </div>
+
+  <div class="create-section">
+    <h2>Create Task</h2>
+    <form (ngSubmit)="createTask()" class="task-form">
+      <div class="form-group">
+        <input
+          type="text"
+          [(ngModel)]="newTask.name"
+          name="name"
+          placeholder="Task name"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <textarea
+          [(ngModel)]="newTask.description"
+          name="description"
+          placeholder="Task description"
+          required
+        ></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Create</button>
+    </form>
+  </div>
+
+  <div *ngIf="loading" class="loading">Loading tasks...</div>
+
+  <div class="tasks-section">
+    <h2>Tasks ({{ tasks.length }})</h2>
+    <div *ngIf="tasks.length === 0 && !loading" class="no-tasks">
+      No tasks yet. Create one above!
+    </div>
+
+    <div class="tasks-grid">
+      <div *ngFor="let task of tasks" class="task-card">
+        <div *ngIf="editingTask?.id !== task.id" class="task-view">
+          <h3>{{ task.name }}</h3>
+          <p>{{ task.description }}</p>
+          <small>{{ task.createdAt | date : "short" }}</small>
+          <div class="task-actions">
+            <button (click)="startEdit(task)" class="btn btn-edit">Edit</button>
+            <button (click)="deleteTask(task.id)" class="btn btn-delete">
+              Delete
+            </button>
+          </div>
+        </div>
+
+        <div *ngIf="editingTask?.id === task.id" class="task-edit">
+          <form (ngSubmit)="saveEdit()" class="edit-form">
+            <div class="form-group">
+              <input
+                type="text"
+                [(ngModel)]="editForm.name"
+                name="editName"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <textarea
+                [(ngModel)]="editForm.description"
+                name="editDescription"
+                required
+              ></textarea>
+            </div>
+            <div class="task-actions">
+              <button type="submit" class="btn btn-save">Save</button>
+              <button
+                type="button"
+                (click)="cancelEdit()"
+                class="btn btn-cancel"
+              >
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
