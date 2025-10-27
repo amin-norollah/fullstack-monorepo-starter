@@ -209,15 +209,15 @@ For production, change the database URL and add a strong JWT secret.
 
 ## Tech Stack
 
-| Technology | Purpose | Why This One |
-|-----------|---------|--------------|
-| **NestJS** | Backend framework | Better structured than Express, built-in DI |
-| **Prisma** | Database ORM | Type-safe queries, easy migrations |
-| **PostgreSQL** | Database | Reliable, feature-rich, well-supported |
-| **Redis** | Caching | Fast, simple, perfect for sessions/cache |
-| **Angular** | Frontend | Powerful, complete framework |
-| **TypeScript** | Language | Catches bugs before runtime |
-| **Docker** | Development | Consistent local environment |
+| Technology     | Purpose           | Why This One                                |
+| -------------- | ----------------- | ------------------------------------------- |
+| **NestJS**     | Backend framework | Better structured than Express, built-in DI |
+| **Prisma**     | Database ORM      | Type-safe queries, easy migrations          |
+| **PostgreSQL** | Database          | Reliable, feature-rich, well-supported      |
+| **Redis**      | Caching           | Fast, simple, perfect for sessions/cache    |
+| **Angular**    | Frontend          | Powerful, complete framework                |
+| **TypeScript** | Language          | Catches bugs before runtime                 |
+| **Docker**     | Development       | Consistent local environment                |
 
 ## What's Not Included
 
