@@ -2,6 +2,12 @@
 
 ![Full-Stack Monorepo Starter](./background.png)
 
+<p align="center">
+  <a href="https://github.com/amin-norollah/fullstack-monorepo-starter/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
+  <a href="#"><img src="https://img.shields.io/badge/node-%3E%3D20.19-green.svg" alt="Node"></a>
+  <a href="#"><img src="https://img.shields.io/badge/typescript-5.7-blue.svg" alt="TypeScript"></a>
+</p>
+
 A ready-to-use NestJS + Angular monorepo with Prisma, Redis, and PostgreSQL.
 
 ## Why This Exists
