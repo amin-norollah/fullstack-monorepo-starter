@@ -43,27 +43,22 @@ This is what I wish existed when I was starting projects. No fluff, just a worki
 You need Node.js 20+, npm, and Docker installed.
 
 ```bash
-# 1. Clone and install
-git clone <your-repo-url>
+git clone https://github.com/amin-norollah/fullstack-monorepo-starter.git
 cd fullstack-monorepo-starter
 npm run install:all
 
-# 2. Start Docker (PostgreSQL + Redis)
 docker-compose up -d
 
-# 3. Copy the env file (defaults work fine)
 cd backend
 copy env.template .env
 cd ..
 
-# 4. Setup database
 cd backend
 npm run prisma:migrate
 npm run prisma:seed
 cd ..
 
-# 5. Start the app
-npm start  # Starts both backend and frontend
+npm start
 ```
 
 **Done!**
@@ -71,28 +66,6 @@ npm start  # Starts both backend and frontend
 - Frontend: http://localhost:4200
 - Backend API: http://localhost:3000
 - API docs: http://localhost:3000/api
-
-## API Endpoints
-
-Base path: `/api/tasks`
-
-| Method | Endpoint     | What it does  |
-| ------ | ------------ | ------------- |
-| GET    | `/tasks`     | Get all tasks |
-| GET    | `/tasks/:id` | Get one task  |
-| POST   | `/tasks`     | Create a task |
-| PUT    | `/tasks/:id` | Update a task |
-| DELETE | `/tasks/:id` | Delete a task |
-
-Example request:
-
-```bash
-curl -X POST http://localhost:3000/api/tasks \
-  -H "Content-Type: application/json" \
-  -d '{"name": "My task", "description": "Do something"}'
-```
-
-The API returns consistent JSON responses and handles errors properly. Check http://localhost:3000/api for the full Swagger documentation.
 
 ## Project Structure
 
@@ -227,80 +200,6 @@ REDIS_PASSWORD=redis_password
 ```
 
 For production, change the database URL and add a strong JWT secret.
-
-## Making It Yours
-
-### Change the Entity
-
-Right now it's "Tasks". Want to build something else?
-
-1. Edit `backend/prisma/schema.prisma` - change `Task` to your entity
-2. Rename `task.dto.ts` to your entity name
-3. Update controller and service files
-4. Run `npm run prisma:migrate`
-
-That's it.
-
-### Add More Fields
-
-Edit the Prisma schema:
-
-```prisma
-model Task {
-  id          String   @id @default(uuid())
-  name        String
-  description String
-  priority    String?  // Add fields like this
-  dueDate     DateTime?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-}
-```
-
-Then run:
-
-```bash
-cd backend
-npm run prisma:migrate
-npm run prisma:generate
-```
-
-### Add Authentication
-
-JWT and Passport are already installed. You just need to:
-
-1. Create an auth module
-2. Add a JWT strategy
-3. Protect your routes with guards
-
-The packages are there, the setup is standard NestJS auth.
-
-## Common Issues
-
-**"Cannot find module '@prisma/client'"**
-
-```bash
-cd backend
-npm run prisma:generate
-```
-
-**"Port 3000 is already in use"**
-
-- Kill whatever's using it, or change PORT in `.env`
-
-**Database won't connect**
-
-```bash
-docker-compose ps  # Make sure PostgreSQL is running
-docker-compose up -d  # Start it if needed
-```
-
-**Redis errors**
-
-```bash
-docker-compose logs redis  # Check what's wrong
-docker-compose restart redis  # Try restarting
-```
 
 ## Tech Stack
 
