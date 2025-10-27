@@ -16,6 +16,8 @@ I got tired of spending hours setting up the same stack every time I started a n
 
 This is what I wish existed when I was starting projects. No fluff, just a working full-stack setup that you can actually use.
 
+**Time saved:** ~4-6 hours per project setup → ~5 minutes with this template.
+
 ## What You Get
 
 **Backend:**
