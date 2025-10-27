@@ -1,5 +1,7 @@
 # Full-Stack Monorepo Starter
 
+![Full-Stack Monorepo Starter](./background.png)
+
 A ready-to-use NestJS + Angular monorepo with Prisma, Redis, and PostgreSQL.
 
 ## Why This Exists
